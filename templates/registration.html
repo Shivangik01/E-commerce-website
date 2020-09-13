@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SignUp Page</title>
+	
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>	
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+ <style type="text/css">
+  .container{
+    padding-top: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .btn{
+    background-color: #000080;
+    color: white;
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+  }
+
+   
+ </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="font-weight: bolder;background-color: white; font-size: 18px; " role="navigation">
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  	 <span class="navbar-toggler-icon"></span>
+    
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="align-content: right;">
+    <ul class="navbar-nav mr-auto" >
+      <li class="nav-item active">
+
+        <a class="nav-link" href="/index"><i class='fas fa-home'></i> Home <span class="sr-only">(current)</span></a>
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;
+      <li class="nav-item">
+        <a class="nav-link" href="/login"><i class='fas fa-user'></i> Login</a>
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li class="nav-item">
+      	<a class="nav-link" href="/registration"><i class='fas fa-user-plus'></i> Sign Up</a>
+      	
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li class="nav-item">
+      	<a class="nav-link" href="contact.html"><i class='fas fa-phone'></i> Contact Us</a>
+      	
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li class="nav-item">
+      	<a class="nav-link" href="about.html"><i class='fas fa-info-circle'></i> About Us</a>
+      	
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+    </ul>
+    
+  </div>
+</nav>
+<br/><br/><br/><br/><br/><br/><br/>
+<div class="container">
+	<div class="row">
+  		
+        <div class="col-lg-5" >
+          <img src="https://www.pngitem.com/pimgs/m/121-1218916_ecommerce-ecommerce-online-shopping-page-banner-hd-png.png" style="max-width: 390px;  height:400px;">
+        </div>
+     
+        <div class="col-lg-5" >
+          <h1 style="color: #000080; font-weight: bolder;"><b>&nbsp;CREATE NEW ACCOUNT</b></h1><br/><br/>
+          <form role="form" method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                  {{form.username.label(class="form-control-label")}}
+                  {% if form.username.errors %}
+                      {{form.username(class="form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.username.errors %} 
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                        
+                      </div>
+                  {% else %}
+
+                    {{form.username(class="form-control")}}
+                  {% endif %}
+              </div><br/>
+              <div class="form-group">
+                  {{form.email.label(class="form-control-label")}}
+                  {% if form.email.errors %}
+                      {{form.email(class="form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.email.errors %} 
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                        
+                      </div>
+                  {% else %}
+
+                    {{form.email(class="form-control")}}
+                  {% endif %}
+              </div><br/>
+              <div class="form-group">
+                  {{form.mobileno.label(class="form-control-label")}}
+                  {% if form.mobileno.errors %}
+                      {{form.mobileno(class="form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.mobileno.errors %} 
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                        
+                      </div>
+                  {% else %}
+
+                    {{form.mobileno(class="form-control")}}
+                  {% endif %}
+              </div><br/>
+              <div class="form-group">
+                  {{form.password.label(class="form-control-label")}}
+                  {% if form.password.errors %}
+                      {{form.password(class="form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.password.errors %} 
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                        
+                      </div>
+                  {% else %}
+
+                    {{form.password(class="form-control")}}
+                  {% endif %}
+              </div><br/>
+              <div class="form-group">
+                  {{form.confirmpassword.label(class="form-control-label")}}
+                  {% if form.confirmpassword.errors %}
+                      {{form.confirmpassword(class="form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                        {% for error in form.confirmpassword.errors %} 
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                        
+                      </div>
+                  {% else %}
+
+                    {{form.confirmpassword(class="form-control")}}
+                  {% endif %}
+              </div>
+              
+              <div style="text-align: center;">
+                <a href="/login">Already have an account?</a>
+              </div>
+              {{form.submit(class="btn btn-default")}}
+             
+          </form>
+        </div>
+ </div>
+ <br/><br/><br/>
+</div>
+
+</body>
+</html>
+
+
+
