@@ -1,10 +1,10 @@
 from flask import  render_template, request, Response, redirect, url_for, flash
 from website import app,db,bcrypt
 from website.forms import RegistrationForm, LoginForm
-from website.models import User
+from website.models import User, Item
 from flask_login import login_user, current_user, logout_user, login_required
 
-
+@app.route('/')
 @app.route('/index')
 def index():
 	return render_template('/index.html')

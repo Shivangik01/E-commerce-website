@@ -17,17 +17,16 @@ class User(db.Model, UserMixin):
 		return f"User('{self.username}' , '{self.email}', '{self.mobile}')"
 
 
+class Item(db.Model):
+	id=db.Column(db.Integer, primary_key=True)
+	title=db.Column(db.String(20),nullable=False)
+	description=db.Column(db.String(1000), nullable=False)
+	price=db.Column(db.Integer, nullable=False)
+	size=db.Column(db.String(5), nullable=False)
+	color=db.Column(db.String(10), nullable=False)
+	number=db.Column(db.Integer, nullable=False)
+	category=db.Column(db.String(20), nullable=False)
+	sub_category=db.Column(db.String(20), nullable=False)
 
-#class Item(db.Model):
-#	id=db.Column(db.Integer, primary_key=True)
-#	title=db.Column(db.String(20), unique=True, nullable=False)
-#	description=db.Column(db.String(1000), nullable=False)
-#	price=db.Column(db.Integer, nullable=False)
-#	size=db.Column(db.String(5), nullable=False)
-#	color=db.Column(db.String(10), nullable=False)
-#	status=db.Column(db.String(10), nullable=False)
-
-#	def __repr__(self):
-#		return f"User('{self.title}' , '{self.description}', '{self.price}')"
-
-
+	def __repr__(self):
+		return f"Item('{self.title}' , '{self.description}', '{self.price}')"
