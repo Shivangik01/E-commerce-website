@@ -33,21 +33,31 @@
 
         <a class="nav-link" href="/index"><i class='fas fa-home'></i> Home <span class="sr-only">(current)</span></a>
       </li>&nbsp;&nbsp;&nbsp;&nbsp;
+            	
       <li class="nav-item">
-        <a class="nav-link" href="/login"><i class='fas fa-user'></i> Login</a>
+      	<a class="nav-link" href="contact.html"><i class='fas fa-phone'></i> Contact Us</a>	
       </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <li class="nav-item">
-      	<a class="nav-link" href="/registration"><i class='fas fa-user-plus'></i> Sign Up</a>
-      	
-      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <li class="nav-item">
-      	<a class="nav-link" href="contact.html"><i class='fas fa-phone'></i> Contact Us</a>
-      	
-      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
       <li class="nav-item">
       	<a class="nav-link" href="about.html"><i class='fas fa-info-circle'></i> About Us</a>
-      	
-      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      	</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+      {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="/logout"><i class='fas fa-user'></i> Logout</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      {% else %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="/login"><i class='fas fa-user'></i> Login</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <li class="nav-item">
+          <a class="nav-link" href="/registration"><i class='fas fa-user-plus'></i> Sign Up</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      {% endif %}
       
     </ul>
     
