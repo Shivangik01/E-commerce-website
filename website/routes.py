@@ -55,32 +55,53 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/clothing')
-def clothing():
-    return render_template('/clothing.html')
+@app.route('/category_wise', methods=['GET', 'POST'])
+def category_wise(reqcategory):
+    items = Item.query.filter_by(category=reqcategory).all()
+    return render_template('/category_wise.html', items=items)
 
 
-@app.route("/itemDescription")
+@app.route("/item_description/<int:itemid>", methods=['GET', 'POST'])
 @login_required
-def itemDescription():
-    productid = request.args.get('id')
-    productDetailsByProductId = getProductDetails(productid)
-    return render_template("itemDescription.html",
-                           data=productDetailsByProductId)
+def item_description(itemid):
+    item = Item.query.filter(id == itemid).first()
+    return render_template('/item_description.html', item=item)
 
 
-@app.route("/addToCart")
+@app.route('/view_cart', methods=['GET', 'POST'])
+def view_cart():
+    cart = Cart.query.filter_by(userid=current_user.id).all()
+    return render_template('/view_cart.html', cart=cart)
+
+
+@app.route('/view_cart/<int:itemid>/buy', methods=['GET', 'POST'])
+def buy(itemid):
+    item = Cart.query.filter_by(userid=current_user.id,
+                                itemid=itemid,
+                                status='C').first()
+    item.status = 'B'
+    db.session.commit()
+    flash(f'Item has been added to your cart!', 'success')
+    return redirect(url_for('view_cart'))
+
+
+@app.route('/view_cart/<int:itemid>/remove', methods=['GET', 'POST'])
+def remove(itemid):
+    item = Cart.query.filter_by(userid=current_user.id,
+                                itemid=itemid,
+                                status='C').first()
+    db.session.delete(item)
+    db.session.commit()
+    flash(f'Item has been successfully removed!', 'success')
+    return redirect(url_for('view_cart'))
+
+
+@app.route("/item_description/<int:item_id>/addtocart",
+           methods=['GET', 'POST'])
 @login_required
-def addToCart():
-    productId = int(request.args.get('id'))
-    cart = Cart(userid=current_user, itemid=productId, status='C')
+def addtocart(catitemid):
+    cart = Cart(userid=current_user.id, itemid=catitemid, status='C')
     db.session.add(cart)
     db.session.commit()
     flash('Item successfully added to cart !!', 'success')
     return redirect(url_for('index'))
-
-
-@app.route("/cart")
-@login_required
-def cart():
-    return render_template("/cart.html")
