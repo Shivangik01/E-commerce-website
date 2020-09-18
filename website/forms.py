@@ -38,15 +38,3 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
-
-
-def getProductDetails(productId):
-    productDetailsById = Product.query.filter(Product.id == productId).first()
-    return productDetailsById
-
-
-def isUserLoggedIn():
-    if 'email' not in session:
-        return False
-    else:
-        return True
