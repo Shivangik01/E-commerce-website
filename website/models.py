@@ -35,6 +35,7 @@ class Item(db.Model):
 
 
 class Cart(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     userid = db.Column(db.Integer,
                        db.ForeignKey('user.id'),
                        nullable=False,
