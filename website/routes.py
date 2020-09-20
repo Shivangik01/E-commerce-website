@@ -75,15 +75,22 @@ def view_cart():
 
 
 @app.route('/view_cart/<int:itemid>/buy', methods=['GET', 'POST'])
+@app.route('/item_description/<int:itemid>/buy', methods=['GET', 'POST'])
 def buy(itemid):
     item = Cart.query.filter_by(userid=current_user.id,
                                 itemid=itemid,
                                 status='C').first()
-    item.status = 'B'
+    if item==None:
+        item=Cart(userid=current_user.id,itemid=itemid,status='B')
+        db.session.add(item)
+    else:
+        item.status = 'B'
     db.session.commit()
     flash(f'Item has been added to your cart!', 'success')
     #return redirect(url_for('view_cart'))
-    return render_template('/view_cart.html', cart=cart)
+    #return render_template('/view_cart.html', cart=cart)
+    return redirect(url_for('index'))
+  
 
 
 @app.route('/view_cart/<int:itemid>/remove', methods=['GET', 'POST'])
