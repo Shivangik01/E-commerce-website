@@ -55,7 +55,7 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/category_wise', methods=['GET', 'POST'])
+@app.route('/category_wise/<string:reqcategory>', methods=['GET', 'POST'])
 def category_wise(reqcategory):
     items = Item.query.filter_by(category=reqcategory).all()
     return render_template('/category_wise.html', items=items)
@@ -64,7 +64,7 @@ def category_wise(reqcategory):
 @app.route("/item_description/<int:itemid>", methods=['GET', 'POST'])
 @login_required
 def item_description(itemid):
-    item = Item.query.filter(id == itemid).first()
+    item = Item.query.filter_by(id=itemid).first()
     return render_template('/item_description.html', item=item)
 
 
@@ -82,7 +82,8 @@ def buy(itemid):
     item.status = 'B'
     db.session.commit()
     flash(f'Item has been added to your cart!', 'success')
-    return redirect(url_for('view_cart'))
+    #return redirect(url_for('view_cart'))
+    return render_template('/view_cart.html', cart=cart)
 
 
 @app.route('/view_cart/<int:itemid>/remove', methods=['GET', 'POST'])
@@ -104,4 +105,5 @@ def addtocart(catitemid):
     db.session.add(cart)
     db.session.commit()
     flash('Item successfully added to cart !!', 'success')
-    return redirect(url_for('index'))
+    return render_template('/category_wise.html', itemid=catitemid)
+    #return redirect(url_for('category_wise', itemid=catitemid))
