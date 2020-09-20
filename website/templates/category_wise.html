@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Home Page</title>
+
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style type="text/css">
+  .card 
+  {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .card img
+  {
+    height: 200px;
+  }
+  .card h4
+  {
+    text-align: center;
+  }
+  h2
+  {
+    font-weight: bolder;
+    font-size: 30px;
+  }
+  h4
+  {
+    font-size: 21px;
+  }
+  .checked {
+  color: orange;
+}
+#clothing img
+{
+  width: 280px;
+  padding-left: 70px;
+}
+a:link {
+      text-decoration: none
+    }
+
+    a:hover {
+      text-decoration: none
+    } 
+  
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+    style="font-weight: bolder;background-color: white; font-size: 18px; " role="navigation">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="align-content: right;">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+
+          <a class="nav-link" href="/index"><i class='fas fa-home'></i> Home <span class="sr-only">(current)</span></a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html"><i class='fas fa-phone'></i> Contact Us</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <li class="nav-item">
+          <a class="nav-link" href="about.html"><i class='fas fa-info-circle'></i> About Us</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        {% if current_user.is_authenticated %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="/view_cart"><i class='fas fa-user'></i> View Cart</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <li class="nav-item">
+          <a class="nav-link" href="/logout"><i class='fas fa-user'></i> Logout</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        {% else %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="/login"><i class='fas fa-user'></i> Login</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <li class="nav-item">
+          <a class="nav-link" href="/registration"><i class='fas fa-user-plus'></i> Sign Up</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        {% endif %}
+
+      </ul>
+
+    </div>
+  </nav>
+
+  <br /><br /><br /><br />
+
+  <div class="container"
+    style="background-image: url(https://wallpaperset.com/w/full/1/c/a/245560.jpg); max-width: 100%;">
+    
+    <div class="row" id="clothing">
+      {% for item in items %}
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-title"><br />
+            <img src="{{ url_for('static', filename='item_images/' + item.image_link) }}">
+          </div>
+         
+          <div class="card-body" style="text-align:center">
+            <h3>{{ item.title }}</h3><br />
+            <h4>{{ item.description }}</h4>
+            <h3>{{ item.price }}</h3><br />
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span><br /><br />
+            <button type="button" class="btn btn-primary btn-lg"><a href="{{url_for('item_description', itemid=item.id)}}">Buy Now</a></button>
+          </div>
+
+        </div>
+
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+ <br/><br/><br/>     
+  
+</body>
+
+</html>
