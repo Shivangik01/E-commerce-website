@@ -46,6 +46,7 @@
 		{% endif %}
 		{% endwith %}
 	</div>
+	
 
 
 	<div class="table">
@@ -87,6 +88,54 @@
 			</table>
 		</div>
 	</div>
+	{% for item in cart %}
+		{% if item.status=='B' %}
+		<div class="col-sm-3">
+			<div class="card">
+			<div class="card-title"><br />
+			</div>
+			
+			<div class="card-body" style="text-align:center">
+				<h3>{{ item.specificitem.title }}</h3><br />
+				<h4>{{ item.specificitem.description }}</h4>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star"></span>
+				<span class="fa fa-star"></span><br /><br />
+				<button type="button" class="btn btn-primary btn-lg"><a href="{{url_for('item_description', itemid=item.id)}}">Buy Now</a></button>
+			</div>
+
+			</div>
+
+		</div>
+	  	{% endif %}
+	  {% endfor %}
+	  {% for item in cart %}
+		{% if item.status=='C' %}
+		<div class="col-sm-3">
+			<div class="card">
+			<div class="card-title"><br />
+			</div>
+			
+			<div class="card-body" style="text-align:center">
+				<h3>{{ item.specificitem.title }}</h3><br />
+				<h4>{{ item.specificitem.description }}</h4>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star"></span>
+				<span class="fa fa-star"></span><br /><br />
+				<button type="button" class="btn btn-primary btn-lg"><a href="{{url_for('item_description', itemid=item.id)}}">Buy Now</a></button>
+			</div>
+
+			</div>
+
+		</div>
+	  	{% endif %}
+      {% endfor %}
+
+
 </body>
 
 </html>

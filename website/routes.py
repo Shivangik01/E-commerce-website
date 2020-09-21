@@ -87,10 +87,7 @@ def buy(itemid):
         item.status = 'B'
     db.session.commit()
     flash(f'Item has been added to your cart!', 'success')
-    #return redirect(url_for('view_cart'))
-    #return render_template('/view_cart.html', cart=cart)
-    return redirect(url_for('index'))
-  
+    return redirect(url_for('view_cart'))  
 
 
 @app.route('/view_cart/<int:itemid>/remove', methods=['GET', 'POST'])
@@ -104,13 +101,12 @@ def remove(itemid):
     return redirect(url_for('view_cart'))
 
 
-@app.route("/item_description/<int:item_id>/addtocart",
-           methods=['GET', 'POST'])
+@app.route("/item_description/<int:itemid>/addtocart",methods=['GET', 'POST'])
 @login_required
-def addtocart(catitemid):
-    cart = Cart(userid=current_user.id, itemid=catitemid, status='C')
+def addtocart(itemid):
+    cart = Cart(userid=current_user.id, itemid=itemid, status='C')
     db.session.add(cart)
     db.session.commit()
     flash('Item successfully added to cart !!', 'success')
-    return render_template('/category_wise.html', itemid=catitemid)
-    #return redirect(url_for('category_wise', itemid=catitemid))
+    return redirect(url_for('view_cart'))
+    
