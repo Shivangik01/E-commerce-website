@@ -7,7 +7,6 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
@@ -36,15 +35,15 @@ class Item(db.Model):
 
 
 class Cart(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userid = db.Column(db.Integer,
                        db.ForeignKey('user.id'),
                        nullable=False,
-                       primary_key=True)
+                       )
     itemid = db.Column(db.Integer,
                        db.ForeignKey('item.id'),
-                       nullable=False,
-                       primary_key=True)
+                       nullable=False
+                       )
     #quantity = db.Column(db.Integer, nullable=False)
     status = db.Column(db.String(2), nullable=False)
 
