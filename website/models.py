@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(20), unique=True, nullable=False)
     mobile = db.Column(db.Integer, unique=True, nullable=False)
     password = db.Column(db.String(20), nullable=False)
+    cartitems = db.relationship('Cart', backref='user', lazy=True)
 
     def __repr__(self):
         return f"User('{self.username}' , '{self.email}', '{self.mobile}')"
@@ -29,6 +30,8 @@ class Item(db.Model):
     number = db.Column(db.Integer, nullable=False)
     category = db.Column(db.String(20), nullable=False)
     sub_category = db.Column(db.String(20), nullable=False)
+    cartitems = db.relationship('Cart', backref='specificitem', lazy=True)
+
 
     def __repr__(self):
         return f"Item('{self.title}' , '{self.description}', '{self.price}')"
