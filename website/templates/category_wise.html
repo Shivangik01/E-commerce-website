@@ -85,7 +85,7 @@ a:link {
         {% if current_user.is_authenticated %}
 
         <li class="nav-item">
-          <a class="nav-link" href="/view_cart"><i class='fas fa-user'></i> View Cart</a>
+          <a class="nav-link" href="/view_cart"><i class="fas fa-cart-plus"></i> View Cart</a>
         </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
         <li class="nav-item">
@@ -112,7 +112,7 @@ a:link {
   <br /><br /><br /><br />
 
   <div class="container"
-    style="background-image: url(https://wallpaperset.com/w/full/1/c/a/245560.jpg); max-width: 100%;">
+    style="background-image: url(https://wallpaperset.com/w/full/1/c/a/245560.jpg); max-width: 100%; padding-top: 70px;">
     
     <div class="row" id="clothing">
       {% for item in items %}
@@ -125,13 +125,13 @@ a:link {
           <div class="card-body" style="text-align:center">
             <h3>{{ item.title }}</h3><br />
             <h4>{{ item.description }}</h4>
-            <h3>{{ item.price }}</h3><br />
+            <h3>{{ item.price }} /-</h3><br />
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span><br /><br />
-            <button type="button" class="btn btn-primary btn-lg"><a href="{{url_for('item_description', itemid=item.id)}}">Buy Now</a></button>
+            <a href="{{url_for('item_description', itemid=item.id)}}"><button type="button" class="btn btn-primary btn-lg">Buy Now </button></a>
 
           </div>
 
