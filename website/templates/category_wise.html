@@ -14,49 +14,50 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style type="text/css">
-  .card 
-  {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  .card img
-  {
-    height: 200px;
-  }
-  .card h4
-  {
-    text-align: center;
-  }
-  h2
-  {
-    font-weight: bolder;
-    font-size: 30px;
-  }
-  h4
-  {
-    font-size: 21px;
-  }
-  .checked {
-  color: orange;
-}
-#clothing img
-{
-  width: 280px;
-  padding-left: 70px;
-}
-a:link {
+  <style type="text/css">
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .card img {
+      height: 200px;
+    }
+
+    .card h4 {
+      text-align: center;
+    }
+
+    h2 {
+      font-weight: bolder;
+      font-size: 30px;
+    }
+
+    h4 {
+      font-size: 21px;
+    }
+
+    .checked {
+      color: orange;
+    }
+
+    #clothing img {
+      width: 280px;
+      padding-left: 70px;
+    }
+
+    a:link {
       text-decoration: none
     }
 
     a:hover {
       text-decoration: none
-    } 
-  
-</style>
+    }
+  </style>
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
     style="font-weight: bolder;background-color: white; font-size: 18px; " role="navigation">
@@ -113,7 +114,7 @@ a:link {
 
   <div class="container"
     style="background-image: url(https://wallpaperset.com/w/full/1/c/a/245560.jpg); max-width: 100%; padding-top: 70px;">
-    
+
     <div class="row" id="clothing">
       {% for item in items %}
       <div class="col-sm-3">
@@ -121,7 +122,7 @@ a:link {
           <div class="card-title"><br />
             <img src="{{ url_for('static', filename='item_images/' + item.image_link) }}">
           </div>
-         
+
           <div class="card-body" style="text-align:center">
             <h3>{{ item.title }}</h3><br />
             <h4>{{ item.description }}</h4>
@@ -131,7 +132,8 @@ a:link {
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span><br /><br />
-            <a href="{{url_for('item_description', itemid=item.id)}}"><button type="button" class="btn btn-primary btn-lg">Buy Now </button></a>
+            <a href="{{url_for('item_description', itemid=item.id)}}"><button type="button"
+                class="btn btn-primary btn-lg">View</button></a>
 
           </div>
 
@@ -141,8 +143,8 @@ a:link {
       {% endfor %}
     </div>
   </div>
- <br/><br/><br/>     
-  
+  <br /><br /><br />
+
 </body>
 
 </html>
