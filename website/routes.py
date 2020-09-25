@@ -3,12 +3,13 @@ from website import app, db, bcrypt
 from website.forms import *
 from website.models import *
 from flask_login import login_user, current_user, logout_user, login_required
+from sqlalchemy import or_
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    items = Item.query.all()
+    items = db.session.query(Item).filter(or_(Item.sub_category=='Pants', Item.sub_category=='Top'))
     return render_template('/index.html', items=items)
 
 
@@ -22,6 +23,8 @@ def login():
         if user and bcrypt.check_password_hash(user.password,
                                                form.password.data):
             login_user(user, remember=form.remember.data)
+            flash(f'You have successfully logged in!',
+              'success')
             return redirect(url_for('index'))
         else:
             flash('Login Unsuccessful. Please check email and password',
@@ -79,7 +82,7 @@ def view_cart():
 @login_required
 def buy(itemid):
     item = Cart.query.filter_by(userid=current_user.id,
-                                itemid=itemid,quantity=1,
+                                itemid=itemid,
                                 status='C').first()
     if item==None:
         item=Cart(userid=current_user.id,itemid=itemid,status='B')
@@ -87,7 +90,7 @@ def buy(itemid):
     else:
         item.status = 'B'
     db.session.commit()
-    flash(f'Item has been added to your cart!', 'success')
+    flash(f'Item has been bought!', 'success')
     return redirect(url_for('view_cart'))  
 
 
@@ -97,18 +100,21 @@ def remove(itemid):
     item = Cart.query.filter_by(userid=current_user.id,
                                 itemid=itemid,
                                 status='C').first()
-    if item!=None:
+    if item==None:
+        flash(f'Item has been not been removed!', 'success')
+        return redirect(url_for('view_cart'))
+    else:
         item.status = 'R'
-    
-    db.session.commit()
-    flash(f'Item has been successfully removed!', 'success')
-    return redirect(url_for('view_cart'))
+        db.session.delete(item)
+        db.session.commit()
+        flash(f'Item has been successfully removed!', 'success')
+        return redirect(url_for('view_cart'))
 
 
 @app.route("/item_description/<int:itemid>/addtocart",methods=['GET', 'POST'])
 @login_required
 def addtocart(itemid):
-    cart = Cart(userid=current_user.id, itemid=itemid, quantity=1,status='C')
+    cart = Cart(userid=current_user.id, itemid=itemid,status='C')
     db.session.add(cart)
     db.session.commit()
     flash('Item successfully added to cart !!', 'success')
