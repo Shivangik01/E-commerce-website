@@ -51,4 +51,4 @@ class Cart(db.Model):
     status = db.Column(db.String(2), nullable=False)
 
     def __repr__(self):
-        return f"Cart('{self.userid}', '{self.productid} ,'{self.status}')"
+        return f"Cart('{self.userid}', '{self.itemid} ,'{self.status}')"
