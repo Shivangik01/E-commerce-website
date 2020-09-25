@@ -1,249 +1,256 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>  
-  .gallery-wrap .img-big-wrap img 
-    {
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  .gallery-wrap .img-big-wrap img {
     height: 400px;
     width: auto;
     display: inline-block;
     cursor: zoom-in;
-    padding-left: 30px;;
-    }
-    .card
-    {
-        margin-top: 60px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-    .page-footer
-  	{
-  		font-size: 18px;
-	  	background: #2d3246;
-	  	color: white;
-	  	font-weight: bolder;
+    padding-left: 30px;
+    ;
+  }
 
-  	}
+  .card {
+    margin-top: 60px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .page-footer {
+    font-size: 18px;
+    background: #2d3246;
+    color: white;
+    font-weight: bolder;
+
+  }
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
-    style="font-weight: bolder;background-color: white; font-size: 18px; " role="navigation">
+  style="font-weight: bolder;background-color: white; font-size: 18px; " role="navigation">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
 
-    </button>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="align-content: right;">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="align-content: right;">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
 
-          <a class="nav-link" href="/index"><i class='fas fa-home'></i> Home <span class="sr-only">(current)</span></a>
-        </li>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="nav-link" href="/index"><i class='fas fa-home'></i> Home <span class="sr-only">(current)</span></a>
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;
 
-        <li class="nav-item">
-          <a class="nav-link" href="contact.html"><i class='fas fa-phone'></i> Contact Us</a>
-        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html"><i class='fas fa-phone'></i> Contact Us</a>
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        <li class="nav-item">
-          <a class="nav-link" href="about.html"><i class='fas fa-info-circle'></i> About Us</a>
-        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li class="nav-item">
+        <a class="nav-link" href="about.html"><i class='fas fa-info-circle'></i> About Us</a>
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        {% if current_user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="/view_cart"><i class="fas fa-cart-plus"></i> View Cart</a>
-        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      {% if current_user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="/view_cart"><i class="fas fa-cart-plus"></i> View Cart</a>
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        <li class="nav-item">
-          <a class="nav-link" href="/logout"><i class='fas fa-user'></i> Logout</a>
-        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li class="nav-item">
+        <a class="nav-link" href="/logout"><i class='fas fa-user'></i> Logout</a>
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        {% else %}
+      {% else %}
 
-        <li class="nav-item">
-          <a class="nav-link" href="/login"><i class='fas fa-user'></i> Login</a>
-        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li class="nav-item">
+        <a class="nav-link" href="/login"><i class='fas fa-user'></i> Login</a>
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        <li class="nav-item">
-          <a class="nav-link" href="/registration"><i class='fas fa-user-plus'></i> Sign Up</a>
-        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li class="nav-item">
+        <a class="nav-link" href="/registration"><i class='fas fa-user-plus'></i> Sign Up</a>
+      </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        {% endif %}
+      {% endif %}
 
-      </ul>
+    </ul>
 
+  </div>
+</nav>
+<br /><br /><br /><br />
+<div class="container"
+  style="background-image: url(https://wallpaperset.com/w/full/1/c/a/245560.jpg); width: 100%; margin-top: 20px;">
+  <div class="card">
+    <div class="row">
+      <aside class="col-sm-5 border-right">
+        <article class="gallery-wrap">
+          <div class="img-big-wrap">
+            <div>
+              <a href="#"><img src="{{ url_for('static', filename='item_images/' + item.image_link) }}"></a>
+            </div>
+          </div>
+
+        </article>
+      </aside>
+      <aside class="col-sm-7">
+        <article class="card-body p-5">
+          <h3 class="title mb-3">{{item.title}}</h3>
+          <p class="price-detail-wrap">
+            <span class="price h3 text-warning">
+              <span class="currency"></span><span class="num">{{item.price}}</span>
+            </span>
+
+          </p>
+          <dl class="item-property">
+            <dt>Description</dt>
+            <dd>
+              <p>{{item.description}}</p>
+            </dd>
+          </dl>
+          <dl class="param param-feature">
+            <dt>Model#</dt>
+            <dd>{{item.id}}</dd>
+          </dl>
+          <dl class="param param-feature">
+            <dt>Color</dt>
+            <dd>{{item.color}}</dd>
+          </dl>
+          <dl class="param param-feature">
+            <dt>Delivery</dt>
+            <dd>India</dd>
+          </dl>
+
+          <hr>
+          <div class="row">
+            <div class="col-sm-5">
+              <dl class="param param-inline">
+                <dt>Quantity: </dt>
+                <dd>
+                  <select class="form-control form-control-sm" style="width:70px;">
+                    <option> 1 </option>
+                    <option> 2 </option>
+                    <option> 3 </option>
+                  </select>
+                </dd>
+              </dl>
+            </div>
+            <div class="col-sm-7">
+              <dl class="param param-inline">
+                <dt>Size: </dt>
+                <dd>
+                  <label class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                      value="option2">
+                    <span class="form-check-label">S</span>
+                  </label>
+                  <label class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                      value="option2">
+                    <span class="form-check-label">M</span>
+                  </label>
+                  <label class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                      value="option2">
+                    <span class="form-check-label">XXL</span>
+                  </label>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          <hr>
+          <a href="{{url_for('buy', itemid=item.id)}}" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
+          <a href="{{url_for('addtocart', itemid=item.id)}}" class="btn btn-lg btn-outline-primary text-uppercase"> <i
+              class="fas fa-shopping-cart"></i> Add to cart </a>
+        </article>
+      </aside>
     </div>
-  </nav>
-  <br /><br /><br /><br />
-<div class="container" style="background-image: url(https://wallpaperset.com/w/full/1/c/a/245560.jpg); width: 100%; margin-top: 20px;">
-<div class="card" >
-	<div class="row">
-		<aside class="col-sm-5 border-right">
-            <article class="gallery-wrap"> 
-                <div class="img-big-wrap">
-                    <div> 
-                        <a href="#"><img src="{{ url_for('static', filename='item_images/' + item.image_link) }}"></a>
-                    </div>
-                </div>
-
-            </article> 
-	    </aside>
-		<aside class="col-sm-7">
-            <article class="card-body p-5">
-	                <h3 class="title mb-3">{{item.title}}</h3>
-                    <p class="price-detail-wrap"> 
-                        <span class="price h3 text-warning"> 
-                            <span class="currency"></span><span class="num">{{item.price}}</span>
-                        </span> 
-	                
-                    </p> 
-                    <dl class="item-property">
-                    <dt>Description</dt>
-                        <dd><p>{{item.description}}</p></dd>
-                    </dl>
-                    <dl class="param param-feature">
-                        <dt>Model#</dt>
-                        <dd>12345611</dd>
-                    </dl>  
-                    <dl class="param param-feature">
-                        <dt>Color</dt>
-                        <dd>{{item.color}}</dd>
-                    </dl>  
-                    <dl class="param param-feature">
-                        <dt>Delivery</dt>
-                        <dd>India</dd>
-                    </dl>  
-
-<hr>
-	<div class="row">
-		<div class="col-sm-5">
-			<dl class="param param-inline">
-			  <dt>Quantity: </dt>
-			  <dd>
-			  	<select class="form-control form-control-sm" style="width:70px;">
-			  		<option> 1 </option>
-			  		<option> 2 </option>
-			  		<option> 3 </option>
-			  	</select>
-			  </dd>
-			</dl>  <!-- item-property .// -->
-		</div> <!-- col.// -->
-		<div class="col-sm-7">
-			<dl class="param param-inline">
-				  <dt>Size: </dt>
-				  <dd>
-				  	<label class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-					  <span class="form-check-label">S</span>
-					</label>
-					<label class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-					  <span class="form-check-label">M</span>
-					</label>
-					<label class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-					  <span class="form-check-label">XXL</span>
-					</label>
-				  </dd>
-			</dl>  
-		</div> 
-	</div> 
-	<hr>
-        <a href="{{url_for('buy', itemid=item.id)}}" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
-        <a href="{{url_for('addtocart', itemid=item.id)}}" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
-</article> 
-		</aside> 
-	</div> 
-</div> 
+  </div>
 
 
 </div>
 
 <br><br><br>
 <footer class="page-footer font-small stylish-color-dark pt-4" style="background-color: black;">
-    <div class="container text-center text-md-left">
-      <div class="row">
-        <div class="col-md-4 mx-auto">
-          <h3 class="font-weight-bold text-uppercase mt-3 mb-4">E-Commerce Website</h3>
-          <p>Happiness is not in money, but in shopping.</p>
-        </div>
-        <hr class="clearfix w-100 d-md-none">
-        <div class="col-md-2 mx-auto">
-          <h3 class="font-weight-bold text-uppercase mt-3 mb-4">Courses</h3>
-          <ul class="list-unstyled">
-            <li>
-              <a href="#!">Mens Clothing</a>
-            </li>
-            <li>
-              <a href="#!">Women's Clothing</a>
-            </li>
-            <li>
-              <a href="#!">Kid's Clothing</a>
-            </li>
-           
-          </ul>
-  
-        </div>
-        <hr class="clearfix w-100 d-md-none">
-        <div class="col-md-2 mx-auto">
-  
-          <h3 class="font-weight-bold text-uppercase mt-3 mb-4">Source</h3>
-  
-          <ul class="list-unstyled">
-              <li>
-              <a href="#!">Home</a>
-            </li>
-            <li>
-              <a href="#!">About Us</a>
-            </li>
-            <li>
-              <a href="#!">Contact Us</a>
-            </li>
-           
-          </ul>
-  
-        </div>
-        <hr class="clearfix w-100 d-md-none">
+  <div class="container text-center text-md-left">
+    <div class="row">
+      <div class="col-md-4 mx-auto">
+        <h3 class="font-weight-bold text-uppercase mt-3 mb-4">E-Commerce Website</h3>
+        <p>Happiness is not in money, but in shopping.</p>
       </div>
+      <hr class="clearfix w-100 d-md-none">
+      <div class="col-md-2 mx-auto">
+        <h3 class="font-weight-bold text-uppercase mt-3 mb-4">Courses</h3>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Mens Clothing</a>
+          </li>
+          <li>
+            <a href="#!">Women's Clothing</a>
+          </li>
+          <li>
+            <a href="#!">Kid's Clothing</a>
+          </li>
+
+        </ul>
+
+      </div>
+      <hr class="clearfix w-100 d-md-none">
+      <div class="col-md-2 mx-auto">
+
+        <h3 class="font-weight-bold text-uppercase mt-3 mb-4">Source</h3>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Home</a>
+          </li>
+          <li>
+            <a href="#!">About Us</a>
+          </li>
+          <li>
+            <a href="#!">Contact Us</a>
+          </li>
+
+        </ul>
+
+      </div>
+      <hr class="clearfix w-100 d-md-none">
     </div>
-    <hr>
-    <hr>
-    <ul class="list-unstyled list-inline text-center">
-      <li class="list-inline-item">
-        <a class="btn-floating btn-fb mx-1">
-          <i class="fab fa-facebook-f"> </i>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="btn-floating btn-tw mx-1">
-          <i class="fab fa-twitter"> </i>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="btn-floating btn-gplus mx-1">
-          <i class="fab fa-google-plus-g"> </i>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="btn-floating btn-li mx-1">
-          <i class="fab fa-linkedin-in"> </i>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="btn-floating btn-dribbble mx-1">
-          <i class="fab fa-dribbble"> </i>
-        </a>
-      </li>
-    </ul>
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-      <a href="#">E-commerce.com</a>
-    </div>
-  </footer> 
+  </div>
+  <hr>
+  <hr>
+  <ul class="list-unstyled list-inline text-center">
+    <li class="list-inline-item">
+      <a class="btn-floating btn-fb mx-1">
+        <i class="fab fa-facebook-f"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-tw mx-1">
+        <i class="fab fa-twitter"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-gplus mx-1">
+        <i class="fab fa-google-plus-g"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-li mx-1">
+        <i class="fab fa-linkedin-in"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-dribbble mx-1">
+        <i class="fab fa-dribbble"> </i>
+      </a>
+    </li>
+  </ul>
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="#">E-commerce.com</a>
+  </div>
+</footer>

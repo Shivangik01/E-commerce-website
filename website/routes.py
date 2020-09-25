@@ -62,13 +62,13 @@ def category_wise(reqcategory):
 
 
 @app.route("/item_description/<int:itemid>", methods=['GET', 'POST'])
-@login_required
 def item_description(itemid):
     item = Item.query.filter_by(id=itemid).first()
     return render_template('/item_description.html', item=item)
 
 
 @app.route('/view_cart', methods=['GET', 'POST'])
+@login_required
 def view_cart():
     cart = Cart.query.filter_by(userid=current_user.id).all()
     return render_template('/view_cart.html', cart=cart)
@@ -76,9 +76,10 @@ def view_cart():
 
 @app.route('/view_cart/<int:itemid>/buy', methods=['GET', 'POST'])
 @app.route('/item_description/<int:itemid>/buy', methods=['GET', 'POST'])
+@login_required
 def buy(itemid):
     item = Cart.query.filter_by(userid=current_user.id,
-                                itemid=itemid,
+                                itemid=itemid,quantity=1,
                                 status='C').first()
     if item==None:
         item=Cart(userid=current_user.id,itemid=itemid,status='B')
@@ -91,11 +92,14 @@ def buy(itemid):
 
 
 @app.route('/view_cart/<int:itemid>/remove', methods=['GET', 'POST'])
+@login_required
 def remove(itemid):
     item = Cart.query.filter_by(userid=current_user.id,
                                 itemid=itemid,
                                 status='C').first()
-    db.session.delete(item)
+    if item!=None:
+        item.status = 'R'
+    
     db.session.commit()
     flash(f'Item has been successfully removed!', 'success')
     return redirect(url_for('view_cart'))
@@ -104,7 +108,7 @@ def remove(itemid):
 @app.route("/item_description/<int:itemid>/addtocart",methods=['GET', 'POST'])
 @login_required
 def addtocart(itemid):
-    cart = Cart(userid=current_user.id, itemid=itemid, status='C')
+    cart = Cart(userid=current_user.id, itemid=itemid, quantity=1,status='C')
     db.session.add(cart)
     db.session.commit()
     flash('Item successfully added to cart !!', 'success')
